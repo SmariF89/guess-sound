@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"./**/*.{js,ts,tsx,json,html}\""
+    "format": "prettier --write 'src/**/*.tsx' 'src/**/*.ts' 'src/**/*.json'"
   },
   "dependencies": {
     "@types/node": "20.5.1",
