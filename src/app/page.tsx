@@ -1,10 +1,10 @@
 import React from 'react';
+import Game from './components/Game';
 
-export default function Ble() {
+export default function Home() {
 	return (
 		<div>
-			<h1>Halló...</h1>
-			<p>...heimur!</p>
+			<Game />
 		</div>
 	);
 }
