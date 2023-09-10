@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const BannerContainer = styled.div`
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 
 	border-bottom: solid;
 	flex-grow: 2;
@@ -25,11 +25,9 @@ const BannerTitle = styled.h1`
 export default function Banner() {
 	return (
 		<BannerContainer>
-			<Link href={''}>About</Link>
 			<BannerTitle>
 				<i>Guess the sound</i>
 			</BannerTitle>
-			<Link href={''}>How to play</Link>
 		</BannerContainer>
 	);
 }
