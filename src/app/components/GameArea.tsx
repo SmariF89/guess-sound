@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import useGameContext from '../context/GameContext';
 
 const GameAreaInnerContainer = styled.div`
 	display: flex;
@@ -13,10 +14,10 @@ const GameAreaInnerContainer = styled.div`
 `;
 
 export default function GameArea() {
-	const [currentGame, setCurrentGame] = useState<number>(1);
+	const [gameState] = useGameContext();
 	return (
 		<GameAreaInnerContainer>
-			<h2>{`Game #${currentGame}`}</h2>
+			<h2>{`Game #${gameState.currentGame}`}</h2>
 			<p>Hér kemur leikurinn</p>
 		</GameAreaInnerContainer>
 	);
