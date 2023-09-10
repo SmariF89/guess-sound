@@ -8,7 +8,6 @@ const GameAreaInnerContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border-right: dotted;
 	flex-grow: 9;
 	margin: 8px;
 `;

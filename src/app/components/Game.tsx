@@ -24,8 +24,8 @@ export default function Game() {
 		<GameContainer>
 			<Banner />
 			<GameAreaContainer>
-				<GameArea />
 				<GameList />
+				<GameArea />
 			</GameAreaContainer>
 		</GameContainer>
 	);
