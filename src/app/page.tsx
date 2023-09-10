@@ -1,10 +1,15 @@
-import React from 'react';
+'use client';
 
-export default function Ble() {
+import React from 'react';
+import Game from './components/Game';
+import { GameContextProvider } from './context/GameContext';
+
+export default function Home() {
 	return (
 		<div>
-			<h1>Halló...</h1>
-			<p>...heimur!</p>
+			<GameContextProvider>
+				<Game />
+			</GameContextProvider>
 		</div>
 	);
 }
