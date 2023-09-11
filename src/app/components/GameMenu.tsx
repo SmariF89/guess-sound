@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import useGameContext from '../context/GameContext';
 import { Game } from '../types';
-import { Button, Menu, MenuProps, Modal } from 'antd';
+import { Button, Menu, MenuProps } from 'antd';
 import {
 	InfoCircleOutlined,
 	MenuFoldOutlined,
@@ -15,6 +15,7 @@ import {
 } from '@ant-design/icons';
 import { MenuInfo } from 'rc-menu/lib/interface';
 import AboutModal from './AboutModal';
+import HowToPlayModal from './HowToPlayModal';
 
 const GameMenuContainer = styled.div`
 	position: absolute;
@@ -53,18 +54,39 @@ const menuItems: MenuItem[] = [
 	]),
 ];
 
-	const [menuCollapsed, setMenuCollapsed] = useState(false);
-	const [aboutModalToggled, setAboutModalToggled] = useState(false);
+type ModalVisibilityState = {
+	about: boolean;
+	howToPlay: boolean;
+};
+
 export default function GameMenu() {
 	const [gameState, setGameState] = useGameContext();
+	const [menuCollapsed, setMenuCollapsed] = useState(false);
+	const [modalVisibility, setModalVisibility] = useState<ModalVisibilityState>({
+		about: false,
+		howToPlay: false,
+	});
+
+	const toggleModal = (modal: keyof ModalVisibilityState, toggle: boolean) => {
+		if (modalVisibility.about || modalVisibility.howToPlay) {
+			setModalVisibility({
+				about: false,
+				howToPlay: false,
+			});
+		}
+		setModalVisibility({
+			about: modal === 'about' && toggle,
+			howToPlay: modal === 'howToPlay' && toggle,
+		});
+	};
 
 	const onMenuClick = (e: MenuInfo) => {
 		switch (e.key) {
 			case 'how-to-play':
-				// setAboutModalToggled(!modalToggled);
+				toggleModal('howToPlay', true);
 				break;
 			case 'about':
-				setAboutModalToggled(true);
+				toggleModal('about', true);
 				break;
 			default:
 				const key: number | typeof NaN = Number(e.key);
@@ -77,9 +99,15 @@ export default function GameMenu() {
 	return (
 		<GameMenuContainer>
 			<AboutModal
-				open={aboutModalToggled}
+				open={modalVisibility.about}
 				hideFn={() => {
-					setAboutModalToggled(false);
+					toggleModal('about', false);
+				}}
+			/>
+			<HowToPlayModal
+				open={modalVisibility.howToPlay}
+				hideFn={() => {
+					toggleModal('howToPlay', false);
 				}}
 			/>
 			<Button

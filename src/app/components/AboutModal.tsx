@@ -16,7 +16,6 @@ export default function AboutModal(props: InfoModalProps) {
 			centered
 			footer={<Button onClick={props.hideFn}>Back to guessing</Button>}
 			closeIcon={false}
-			className='info-modal'
 		>
 			<div>
 				<p>
