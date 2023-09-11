@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import useGameContext from '../context/GameContext';
 import { Game } from '../types';
-import { Button, Menu, MenuProps } from 'antd';
+import { Button, Menu, MenuProps, Modal } from 'antd';
 import {
 	InfoCircleOutlined,
 	MenuFoldOutlined,
@@ -14,6 +14,7 @@ import {
 	RightOutlined,
 } from '@ant-design/icons';
 import { MenuInfo } from 'rc-menu/lib/interface';
+import AboutModal from './AboutModal';
 
 const GameListContainer = styled.div`
 	position: absolute;
@@ -54,17 +55,16 @@ const menuItems: MenuItem[] = [
 
 export default function GameList() {
 	const [menuCollapsed, setMenuCollapsed] = useState(false);
+	const [aboutModalToggled, setAboutModalToggled] = useState(false);
 	const [gameState, setGameState] = useGameContext();
 
 	const onMenuClick = (e: MenuInfo) => {
-		console.log(e);
-
 		switch (e.key) {
 			case 'how-to-play':
-				// TODO: Toggle how-to-play modal
+				// setAboutModalToggled(!modalToggled);
 				break;
 			case 'about':
-				// TODO: Toggle about modal
+				setAboutModalToggled(true);
 				break;
 			default:
 				const key: number | typeof NaN = Number(e.key);
@@ -76,6 +76,12 @@ export default function GameList() {
 
 	return (
 		<GameListContainer>
+			<AboutModal
+				open={aboutModalToggled}
+				hideFn={() => {
+					setAboutModalToggled(false);
+				}}
+			/>
 			<Button
 				type='primary'
 				onClick={() => {
