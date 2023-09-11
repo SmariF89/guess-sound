@@ -14,8 +14,10 @@ import {
 	RightOutlined,
 } from '@ant-design/icons';
 import { MenuInfo } from 'rc-menu/lib/interface';
+import AboutModal from './AboutModal';
+import HowToPlayModal from './HowToPlayModal';
 
-const GameListContainer = styled.div`
+const GameMenuContainer = styled.div`
 	position: absolute;
 	margin: 15px 0px 0px 15px;
 `;
@@ -52,19 +54,39 @@ const menuItems: MenuItem[] = [
 	]),
 ];
 
-export default function GameList() {
-	const [menuCollapsed, setMenuCollapsed] = useState(false);
+type ModalVisibilityState = {
+	about: boolean;
+	howToPlay: boolean;
+};
+
+export default function GameMenu() {
 	const [gameState, setGameState] = useGameContext();
+	const [menuCollapsed, setMenuCollapsed] = useState(false);
+	const [modalVisibility, setModalVisibility] = useState<ModalVisibilityState>({
+		about: false,
+		howToPlay: false,
+	});
+
+	const toggleModal = (modal: keyof ModalVisibilityState, toggle: boolean) => {
+		if (modalVisibility.about || modalVisibility.howToPlay) {
+			setModalVisibility({
+				about: false,
+				howToPlay: false,
+			});
+		}
+		setModalVisibility({
+			about: modal === 'about' && toggle,
+			howToPlay: modal === 'howToPlay' && toggle,
+		});
+	};
 
 	const onMenuClick = (e: MenuInfo) => {
-		console.log(e);
-
 		switch (e.key) {
 			case 'how-to-play':
-				// TODO: Toggle how-to-play modal
+				toggleModal('howToPlay', true);
 				break;
 			case 'about':
-				// TODO: Toggle about modal
+				toggleModal('about', true);
 				break;
 			default:
 				const key: number | typeof NaN = Number(e.key);
@@ -75,7 +97,19 @@ export default function GameList() {
 	};
 
 	return (
-		<GameListContainer>
+		<GameMenuContainer>
+			<AboutModal
+				open={modalVisibility.about}
+				hideFn={() => {
+					toggleModal('about', false);
+				}}
+			/>
+			<HowToPlayModal
+				open={modalVisibility.howToPlay}
+				hideFn={() => {
+					toggleModal('howToPlay', false);
+				}}
+			/>
 			<Button
 				type='primary'
 				onClick={() => {
@@ -95,6 +129,6 @@ export default function GameList() {
 				onClick={onMenuClick}
 				selectedKeys={[gameState.currentGame.toString()]}
 			/>
-		</GameListContainer>
+		</GameMenuContainer>
 	);
 }
