@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { styled } from 'styled-components';
-import GameList from './GameList';
+import GameMenu from './GameMenu';
 import Banner from './Banner';
 import GameArea from './GameArea';
 
@@ -24,7 +24,7 @@ export default function Game() {
 		<GameContainer>
 			<Banner />
 			<GameAreaContainer>
-				<GameList />
+				<GameMenu />
 				<GameArea />
 			</GameAreaContainer>
 		</GameContainer>

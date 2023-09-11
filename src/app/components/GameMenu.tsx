@@ -16,7 +16,7 @@ import {
 import { MenuInfo } from 'rc-menu/lib/interface';
 import AboutModal from './AboutModal';
 
-const GameListContainer = styled.div`
+const GameMenuContainer = styled.div`
 	position: absolute;
 	margin: 15px 0px 0px 15px;
 `;
@@ -53,9 +53,9 @@ const menuItems: MenuItem[] = [
 	]),
 ];
 
-export default function GameList() {
 	const [menuCollapsed, setMenuCollapsed] = useState(false);
 	const [aboutModalToggled, setAboutModalToggled] = useState(false);
+export default function GameMenu() {
 	const [gameState, setGameState] = useGameContext();
 
 	const onMenuClick = (e: MenuInfo) => {
@@ -75,7 +75,7 @@ export default function GameList() {
 	};
 
 	return (
-		<GameListContainer>
+		<GameMenuContainer>
 			<AboutModal
 				open={aboutModalToggled}
 				hideFn={() => {
@@ -101,6 +101,6 @@ export default function GameList() {
 				onClick={onMenuClick}
 				selectedKeys={[gameState.currentGame.toString()]}
 			/>
-		</GameListContainer>
+		</GameMenuContainer>
 	);
 }
