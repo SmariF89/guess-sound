@@ -12,9 +12,11 @@ const GameContext = createContext<GameContextValue>([initialState, () => {}]);
 
 export function GameContextProvider(props: { children?: React.ReactNode }) {
 	const [gameState, setGameState] = useReducer(gameReducer, initialState, () => {
-		if (typeof window !== undefined) {
+		if (typeof window !== 'undefined') {
 			const localData = localStorage.getItem('gameState');
 			return localData ? JSON.parse(localData) : initialState;
+		} else {
+			return initialState;
 		}
 	});
 
