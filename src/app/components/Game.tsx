@@ -15,7 +15,6 @@ const GameContainer = styled.div`
 `;
 
 const GameAreaContainer = styled.div`
-	display: flex;
 	flex-grow: 8;
 `;
 

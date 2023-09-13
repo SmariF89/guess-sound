@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useGameContext from '../context/GameContext';
+import AudioPlayer from './AudioPlayer';
 
 const GameAreaInnerContainer = styled.div`
 	display: flex;
@@ -17,7 +18,7 @@ export default function GameArea() {
 	return (
 		<GameAreaInnerContainer>
 			<h2>{`Game #${gameState.currentGame}`}</h2>
-			<p>Hér kemur leikurinn</p>
+			<AudioPlayer src='/audio_test_files/hl/1.wav' />
 		</GameAreaInnerContainer>
 	);
 }
