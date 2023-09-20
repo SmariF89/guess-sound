@@ -7,9 +7,11 @@ import { Button } from 'antd';
 import WaveSurfer from 'wavesurfer.js';
 import styled from 'styled-components';
 
-const AudioPlayerContainer = styled.div`
+const AudioPlayerInnerContainer = styled.div`
 	display: flex;
-	width: 30%;
+	width: 100%;
+
+	margin: 12px 0px 12px 0px;
 
 	button {
 		align-self: center;
@@ -71,7 +73,7 @@ const AudioPlayer = (props: AudioPlayerProps) => {
 	};
 
 	return (
-		<AudioPlayerContainer>
+		<AudioPlayerInnerContainer>
 			<Button
 				icon={audioPlayerState.isPlaying ? <PlayCircleTwoTone twoToneColor='#fa1100' /> : <PlayCircleTwoTone />}
 				size='large'
@@ -80,7 +82,7 @@ const AudioPlayer = (props: AudioPlayerProps) => {
 				}}
 			/>
 			<AudioPlayerWrapper ref={containerRef} />
-		</AudioPlayerContainer>
+		</AudioPlayerInnerContainer>
 	);
 };
 
