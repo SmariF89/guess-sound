@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import useGameContext from '../context/GameContext';
 import AudioPlayer from './AudioPlayer';
+import GuessInput from './GuessInput';
 
 const GameAreaInnerContainer = styled.div`
 	display: flex;
@@ -33,6 +34,7 @@ export default function GameArea() {
 				<AudioPlayer src='/audio_test_files/hl/5.wav' />
 				<AudioPlayer src='/audio_test_files/hl/6.wav' />
 			</AudioPlayerContainer>
+			<GuessInput />
 		</GameAreaInnerContainer>
 	);
 }
