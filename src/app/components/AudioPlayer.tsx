@@ -7,9 +7,10 @@ import { Button } from 'antd';
 import WaveSurfer from 'wavesurfer.js';
 import styled from 'styled-components';
 
-const AudioPlayerInnerContainer = styled.div`
+const AudioPlayerInnerContainer = styled.div<{ $disabled?: boolean }>`
 	display: flex;
 	width: 100%;
+	opacity: ${(props) => (props.$disabled ? '0.5' : '1')};
 
 	margin: 12px 0px 12px 0px;
 
@@ -32,6 +33,7 @@ const initialState: AudioPlayerState = {
 
 type AudioPlayerProps = {
 	src: string;
+	disabled?: boolean;
 };
 
 const AudioPlayer = (props: AudioPlayerProps) => {
@@ -72,14 +74,16 @@ const AudioPlayer = (props: AudioPlayerProps) => {
 		}
 	};
 
+	// TODO: If disabled, don't download sound. If mounted and not disabled, download sound.
 	return (
-		<AudioPlayerInnerContainer>
+		<AudioPlayerInnerContainer $disabled={props.disabled}>
 			<Button
 				icon={audioPlayerState.isPlaying ? <PlayCircleTwoTone twoToneColor='#fa1100' /> : <PlayCircleTwoTone />}
 				size='large'
 				onClick={() => {
 					playAudio();
 				}}
+				disabled={props.disabled}
 			/>
 			<AudioPlayerWrapper ref={containerRef} />
 		</AudioPlayerInnerContainer>

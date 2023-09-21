@@ -28,11 +28,11 @@ export default function GameArea() {
 			<h2>{`Game #${gameState.currentGame}`}</h2>
 			<AudioPlayerContainer>
 				<AudioPlayer src='/audio_test_files/hl/1.wav' />
-				<AudioPlayer src='/audio_test_files/hl/2.wav' />
-				<AudioPlayer src='/audio_test_files/hl/3.wav' />
-				<AudioPlayer src='/audio_test_files/hl/4.wav' />
-				<AudioPlayer src='/audio_test_files/hl/5.wav' />
-				<AudioPlayer src='/audio_test_files/hl/6.wav' />
+				<AudioPlayer src='/audio_test_files/hl/2.wav' disabled />
+				<AudioPlayer src='/audio_test_files/hl/3.wav' disabled />
+				<AudioPlayer src='/audio_test_files/hl/4.wav' disabled />
+				<AudioPlayer src='/audio_test_files/hl/5.wav' disabled />
+				<AudioPlayer src='/audio_test_files/hl/6.wav' disabled />
 			</AudioPlayerContainer>
 			<GuessInput />
 		</GameAreaInnerContainer>
