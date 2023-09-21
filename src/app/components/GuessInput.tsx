@@ -1,6 +1,7 @@
 import { Space, AutoComplete, Button } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import SkipButton from './SkipButton';
 
 const GuessInputInnerContainer = styled.div`
 	width: 30%;
@@ -40,6 +41,7 @@ const GuessInput: React.FC = () => {
 					onSelect={(txt) => setInputText(txt)}
 					size='large'
 					placeholder='Type your guess...'
+					suffixIcon={<SkipButton />}
 				/>
 				<Button onClick={submitGuess} size='large' type='primary' ghost>
 					Guess
