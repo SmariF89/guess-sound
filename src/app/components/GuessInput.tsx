@@ -1,4 +1,4 @@
-import { Space, AutoComplete, Button } from 'antd';
+import { Space, AutoComplete, Button, Empty, message } from 'antd';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SkipButton from './SkipButton';
@@ -10,11 +10,7 @@ const GuessInputInnerContainer = styled.div`
 
 const GuessInput: React.FC = () => {
 	const [inputText, setInputText] = useState<string>('');
-
-	const submitGuess = () => {
-		console.log(`Submitted ${inputText}.`);
-		setInputText('');
-	};
+	const [messageApi, contextHolder] = message.useMessage();
 
 	const fakeOptions: { value: string }[] = [
 		{ value: 'Half-Life' },
@@ -29,8 +25,26 @@ const GuessInput: React.FC = () => {
 		return objA.value > objB.value ? 1 : 0;
 	});
 
+	const submitGuess = () => {
+		if (!fakeOptions.some((opt) => opt.value === inputText)) {
+			inputError();
+			return;
+		}
+		console.log(`Submitted ${inputText}.`);
+		setInputText('');
+	};
+
+	const inputError = () => {
+		messageApi.open({
+			type: 'error',
+			content: 'Game not found in database',
+			style: { textAlign: 'right' },
+		});
+	};
+
 	return (
 		<GuessInputInnerContainer>
+			{contextHolder}
 			<Space.Compact style={{ width: '100%' }}>
 				<AutoComplete
 					style={{ width: '100%' }}
@@ -42,6 +56,7 @@ const GuessInput: React.FC = () => {
 					size='large'
 					placeholder='Type your guess...'
 					suffixIcon={<SkipButton />}
+					notFoundContent={<Empty description={<span>No match found</span>} />}
 				/>
 				<Button onClick={submitGuess} size='large' type='primary' ghost>
 					Guess
