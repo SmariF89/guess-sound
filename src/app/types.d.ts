@@ -8,7 +8,7 @@ type GameProgress = {
 	won: boolean;
 };
 
-export type Game = {
+type Game = {
 	num: number;
 	progress: GameProgress;
 };

@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import useGameContext from '../context/GameContext';
-import { Game } from '../types';
 import { Button, Menu, MenuProps } from 'antd';
 import {
 	InfoCircleOutlined,
@@ -22,8 +21,8 @@ const GameMenuContainer = styled.div`
 	margin: 15px 0px 0px 15px;
 `;
 
-const gameList: Game[] = Array.from(Array(20).keys()).map<Game>((n: number) => {
-	return { num: n + 1 };
+const fakeNumCatalog: number[] = Array.from(Array(20).keys()).map<number>((n: number) => {
+	return n + 1;
 });
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -48,8 +47,8 @@ const menuItems: MenuItem[] = [
 	getItem('About', 'about', <InfoCircleOutlined />),
 	getItem('How to play', 'how-to-play', <QuestionOutlined />),
 	getItem('Catalog', 'catalog', <OrderedListOutlined />, [
-		...gameList.map((game) => {
-			return getItem(`Game #${game.num}`, game.num, <RightOutlined />);
+		...fakeNumCatalog.map((gameNum) => {
+			return getItem(`Game #${gameNum}`, gameNum, <RightOutlined />);
 		}),
 	]),
 ];
