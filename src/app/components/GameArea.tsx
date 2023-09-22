@@ -1,15 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useGameContext from '../context/GameContext';
+import AudioPlayer from './AudioPlayer';
+import GuessInput from './GuessInput';
 
 const GameAreaInnerContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	flex-grow: 9;
 	margin: 8px;
+`;
+
+const AudioPlayerContainer = styled.div`
+	margin-top: 16px;
+	display: flex;
+	flex-direction: column;
+	align-content: space-between;
+	width: 30%;
 `;
 
 export default function GameArea() {
@@ -17,7 +26,15 @@ export default function GameArea() {
 	return (
 		<GameAreaInnerContainer>
 			<h2>{`Game #${gameState.currentGame}`}</h2>
-			<p>Hér kemur leikurinn</p>
+			<AudioPlayerContainer>
+				<AudioPlayer src='/audio_test_files/hl/1.wav' />
+				<AudioPlayer src='/audio_test_files/hl/2.wav' disabled />
+				<AudioPlayer src='/audio_test_files/hl/3.wav' disabled />
+				<AudioPlayer src='/audio_test_files/hl/4.wav' disabled />
+				<AudioPlayer src='/audio_test_files/hl/5.wav' disabled />
+				<AudioPlayer src='/audio_test_files/hl/6.wav' disabled />
+			</AudioPlayerContainer>
+			<GuessInput />
 		</GameAreaInnerContainer>
 	);
 }

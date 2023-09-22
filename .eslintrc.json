@@ -25,11 +25,11 @@
         "prettier/prettier": "error",
         "arrow-body-style": "off",
         "prefer-arrow-callback": "off",
-        "indent": ["error", "tab"],
         "linebreak-style": ["error", "unix"],
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
         "no-unused-vars": "error",
+        "no-case-declarations": "warn",
         "@typescript-eslint/no-unused-vars": ["error", {
             "varsIgnorePattern": "^_",
             "argsIgnorePattern": "^_",

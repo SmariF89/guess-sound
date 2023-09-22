@@ -1,8 +1,11 @@
+'use client';
+
 import React from 'react';
 import { Button, Modal } from 'antd';
 
 type InfoModalProps = {
 	open: boolean;
+	// eslint-disable-next-line no-unused-vars
 	hideFn: ((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
 };
 
