@@ -5,7 +5,12 @@ import { Dispatch, createContext, useContext, useEffect, useReducer } from 'reac
 import { gameReducer } from '../reducers/GameReducer';
 import { GameAction, GameState } from '../types';
 
-const initialState: GameState = { currentGame: 1 };
+const initialState: GameState = {
+	currentGame: 1,
+	games: [],
+	catalog: [],
+	catalogNames: [],
+};
 
 type GameContextValue = [GameState, Dispatch<GameAction>];
 const GameContext = createContext<GameContextValue>([initialState, () => {}]);
